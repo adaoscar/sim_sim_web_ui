@@ -1,0 +1,95 @@
+<div style="padding: 15px;">
+
+    <!-- Titulo -->
+    <div class="d-flex align-items-center" style="margin-bottom: 15px;">
+        <div class="titulo">{{ 'simRoles.SimRoles' | translate }}</div>
+        <div *ngIf="isLoading" class="row ml-2">
+            <mat-spinner [diameter]="21"></mat-spinner>
+            <span class="ml-2" style="font-size: 15px; margin-top: 2px;">Loading...</span>
+        </div>
+        <span style="margin: auto;"></span>
+        <mat-icon style="cursor: pointer;" matTooltip="{{ 'simRoles._nuevo' | translate }}" (click)="onAdd()">add</mat-icon>
+        <mat-icon style="cursor: pointer;" matTooltip="{{ 'simRoles._actualizar' | translate }}" (click)="onRefresh()">refresh</mat-icon>
+    </div>
+
+    <!-- Roles -->
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let rol of roles; let index = index" (opened)="onSelectRol(rol, index)">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <span style="font-size: 16px;">{{ rol.SimAplicacion?.SimAplicacionNombre }} - {{ rol.Name }}</span>
+                </mat-panel-title>
+                <mat-panel-description class="d-flex justify-content-end">
+                    <mat-icon matTooltip="{{ 'simRoles._eliminar' | translate }}" (click)="onDelete()">delete</mat-icon>
+                  </mat-panel-description>
+            </mat-expansion-panel-header>
+            
+            <!-- Funcionalidades -->
+            <div>
+                <div class="d-flex align-items-center">
+                    <div style="font-size: 17px; margin-top: 5px; margin-bottom: 15px;">{{ 'simRoles.SimFuncionalidades' | translate }}</div>
+                    <span style="margin: auto;"></span>
+                    <mat-icon style="cursor: pointer;" matTooltip="{{ (rol.crud ? 'simRoles._tooltipTodosr' : 'simRoles._tooltipTodos') | translate }}" (click)="onCheck(true)">check_box</mat-icon>
+                    <mat-icon style="cursor: pointer;" matTooltip="{{ 'simRoles._tooltipTodosc' | translate }}" (click)="onCheck(true, 'checkc', 'c')" *ngIf="rol.crud">check_box</mat-icon>
+                    <mat-icon style="cursor: pointer;" matTooltip="{{ 'simRoles._tooltipTodosu' | translate }}" (click)="onCheck(true, 'checku', 'u')" *ngIf="rol.crud">check_box</mat-icon>
+                    <mat-icon style="cursor: pointer;" matTooltip="{{ 'simRoles._tooltipTodosd' | translate }}" (click)="onCheck(true, 'checkd', 'd')" *ngIf="rol.crud">check_box</mat-icon>
+                    <mat-icon style="cursor: pointer;" matTooltip="{{ 'simRoles._tooltipNinguno' | translate }}" (click)="onCheck(false)">check_box_outline_blank</mat-icon>
+                    <mat-icon style="cursor: pointer;" matTooltip="{{ 'simRoles._tooltipGuardar' | translate }}" (click)="onActualizarRol(false)">save</mat-icon>
+                </div>
+
+                <div *ngIf="isLoadingResults" class="d-flex justify-content-center row ml-2">
+                    <mat-spinner [diameter]="30"></mat-spinner>
+                    <span class="ml-2" style="font-size: 17px; margin-top: 5px;">Loading...</span>
+                </div>
+
+                <!-- Selección consulta  -->
+                <div *ngIf="!rol.crud">
+                    <div *ngFor="let modulo of filteredModulos, let index = index" class="mb-2">
+
+                        <mat-checkbox [(ngModel)]="modulo.checkr" [indeterminate]="!modulo.checkr && modulo.funcActivasr > 0" [checked]="modulo.checkr" (change)="onCheckModulo($event.checked, modulo);">
+                            <span class="m-0" style="font-size: 17px; font-weight: 500;">{{ modulo.SimModulosDescripcion }}</span>
+                        </mat-checkbox>
+                        
+                        <div class="ml-0 row">
+                            <div class="col-12 col-sm-6 col-md-4" style="height: 24px !important;" *ngFor="let funcionalidad of modulo.Funcionalidades">
+                                <mat-checkbox [(ngModel)]="funcionalidad.checkr" class="mr-2" (change)="onCheckFuncionalidad($event.checked, modulo)">
+                                    <span class="m-0">{{ funcionalidad.ClaimDescription }}</span>
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                        <hr *ngIf="index != (filteredModulos.length - 1)">
+
+                    </div>
+                </div>
+
+                <!-- Selección CRUD -->
+                <div *ngIf="rol.crud">
+                    <div *ngFor="let modulo of filteredModulos, let index = index" class="mb-2">
+
+                        <mat-checkbox [(ngModel)]="modulo.checkr" [indeterminate]="!modulo.checkr && modulo.funcActivasr > 0" [checked]="modulo.checkr" class="mr-1" (change)="onCheckModulo($event.checked, modulo, 'm', 'r');" matTooltip="{{ 'simRoles._tooltipConsultar' | translate }}"></mat-checkbox>
+                        <mat-checkbox [(ngModel)]="modulo.checkc" [indeterminate]="!modulo.checkc && modulo.funcActivasc > 0" [checked]="modulo.checkc" class="mr-1" (change)="onCheckModulo($event.checked, modulo, 'm', 'c');" matTooltip="{{ 'simRoles._tooltipCrear' | translate }}"></mat-checkbox>
+                        <mat-checkbox [(ngModel)]="modulo.checku" [indeterminate]="!modulo.checku && modulo.funcActivasu > 0" [checked]="modulo.checku" class="mr-1" (change)="onCheckModulo($event.checked, modulo, 'm', 'u');" matTooltip="{{ 'simRoles._tooltipEditar' | translate }}"></mat-checkbox>
+                        <mat-checkbox [(ngModel)]="modulo.checkd" [indeterminate]="!modulo.checkd && modulo.funcActivasd > 0" [checked]="modulo.checkd" class="mr-1" (change)="onCheckModulo($event.checked, modulo, 'm', 'd');" matTooltip="{{ 'simRoles._tooltipEliminar' | translate }}"></mat-checkbox>
+                        <span class="m-0" style="font-size: 17px; font-weight: 500;">{{ modulo.SimModulosDescripcion }}</span>
+                        
+                        <div class="ml-0 mt-2 row">
+                            <div class="col-12 col-sm-6" style="height: 24px !important;" *ngFor="let funcionalidad of modulo.Funcionalidades">
+                                <mat-checkbox [(ngModel)]="funcionalidad.checkr" class="mr-1" (change)="onCheckFuncionalidad($event.checked, modulo, funcionalidad, 'm', 'r')" matTooltip="{{ 'simRoles._tooltipConsultar' | translate }}"></mat-checkbox>
+                                <mat-checkbox [(ngModel)]="funcionalidad.checkc" class="mr-1" (change)="onCheckFuncionalidad($event.checked, modulo, funcionalidad, 'm', 'c')" matTooltip="{{ 'simRoles._tooltipCrear' | translate }}"></mat-checkbox>
+                                <mat-checkbox [(ngModel)]="funcionalidad.checku" class="mr-1" (change)="onCheckFuncionalidad($event.checked, modulo, funcionalidad, 'm', 'u')" matTooltip="{{ 'simRoles._tooltipEditar' | translate }}"></mat-checkbox>
+                                <mat-checkbox [(ngModel)]="funcionalidad.checkd" class="mr-1" (change)="onCheckFuncionalidad($event.checked, modulo, funcionalidad, 'm', 'd')" matTooltip="{{ 'simRoles._tooltipEliminar' | translate }}"></mat-checkbox>
+                                <mat-checkbox class="mr-2" style="cursor: pointer;" (click)="openDialogPermisoPestana(modulo, funcionalidad)" [disabled]="true" *ngIf="funcionalidad.checkadc" matTooltip="{{ 'simRoles._tooltipPestanas' | translate }}"></mat-checkbox>
+                                <span class="m-0">{{ funcionalidad.ClaimDescription }}</span>
+                            </div>
+                        </div>
+
+                        <hr *ngIf="index != (filteredModulos.length - 1)">
+
+                    </div>
+                </div>
+            </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+</div>

@@ -1,0 +1,49 @@
+#simUsuarioEmail_t {
+    text-align: left;
+    flex: 0 0 300px;
+}
+
+#simUsuarioEmail {
+    text-align: left;
+    flex: 0 0 280px;
+}
+
+#simUsuarioRoles_t {
+    text-align: left;
+    flex: 0 0 300px;
+}
+
+#simUsuarioRoles {
+    text-align: left;
+    flex: 0 0 280px;
+}
+
+.lista-roles {
+    opacity: 0.75;
+    font-size: 0.75em;
+}
+
+.btn-filtro {
+    font-size: 0.85rem;
+    width: 120px;
+    height: 35px !important;
+}
+
+.btn-filtro:disabled {
+    background-color: #bababa!important;
+    border-color: #bababa!important;
+    cursor: default!important;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: rgba(0,0,0,.0) !important;
+    padding: 0 !important;
+}
+
+/* Roles */
+
+.div-roles {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 96vw;
+}

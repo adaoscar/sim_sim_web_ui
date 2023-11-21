@@ -1,0 +1,13 @@
+.icon {
+    width: 18px;
+    margin-right: 11px;
+    margin-left: 11px;
+    cursor: pointer;
+}
+
+.fecha {
+    padding-top: 1px;
+    padding-right: 10px;
+    color: whitesmoke;
+    font-size: 21px;
+}

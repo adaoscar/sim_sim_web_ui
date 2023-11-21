@@ -1,0 +1,86 @@
+<mat-card>
+    <mat-card-header>
+        <div class="d-flex align-items-center m-card">
+            <mat-card-title class="mb-0">{{ 'simMunicipio._titulo' | translate }}</mat-card-title>
+            <span [ngStyle]="{'margin': 'auto'}" ></span>
+            <mat-icon *ngIf="simMunicipioForm.invalid" [matTooltip]="getErrorMessages()">error_outline</mat-icon>
+            <mat-icon mat-dialog-close>close</mat-icon>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="simMunicipioForm" (ngSubmit)="onSubmit(simMunicipioForm.value)" autocomplete="off">
+            <div class="dialog-content">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput
+                                    autocomplete="off"
+                                    [matAutocomplete]="simDepartamentoNombre"
+                                    [formControl]="simDepartamentoNombreCtrl"
+                                    placeholder="{{ 'simMunicipio.SimDepartamentoNombre' | translate }}:"
+                                    (keydown)="onKeydownSimDepartamentoNombre($event);" />
+                        </mat-form-field>
+                        <mat-autocomplete #simDepartamentoNombre="matAutocomplete">
+                            <mat-option *ngFor="let opt of filteredSimDepartamentoNombre" [value]="opt.SimDepartamentoNombre" (click)="onSelectSimDepartamentoNombre(opt);">
+                                {{ opt.SimDepartamentoNombre }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-error *ngIf="simDepartamentoNombreCtrl.invalid && simDepartamentoNombreCtrl.touched">{{ "SimMunicipio.SimDepartamentoNombreError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="number"
+                                    formControlName="SimMunicipioCodigo"
+                                    placeholder="{{ 'simMunicipio.SimMunicipioCodigo' | translate }}+" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simMunicipioForm.controls.SimMunicipioCodigo.invalid && simMunicipioForm.controls.SimMunicipioCodigo.touched">{{ "simMunicipio.SimMunicipioCodigoError" | translate }}</mat-error>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <mat-form-field>
+                            <input matInput
+                                    autocomplete="off"
+                                    [matAutocomplete]="simMunicipioNombre"
+                                    [formControl]="simMunicipioNombreCtrl"
+                                    placeholder="{{ 'simMunicipio.SimMunicipioNombre' | translate }}:"
+                                    (keydown)="onKeydownSimMunicipioNombre($event);" />
+                        </mat-form-field>
+                        <mat-autocomplete #simMunicipioNombre="matAutocomplete">
+                            <mat-option *ngFor="let opt of filteredSimMunicipioNombre" [value]="opt.SimMunicipioNombre" (click)="onSelectSimMunicipioNombre(opt);">
+                                {{ opt.SimMunicipioNombre }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-error *ngIf="simMunicipioNombreCtrl.invalid && simMunicipioNombreCtrl.touched">{{ "SimMunicipio.SimMunicipioNombreError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-checkbox
+                                formControlName="SimMunicipioEstado" >
+                                {{ 'simMunicipio.SimMunicipioEstado' | translate }}:</mat-checkbox>
+                        <mat-error *ngIf="simMunicipioForm.controls.SimMunicipioEstado.invalid && simMunicipioForm.controls.SimMunicipioEstado.touched">{{ "simMunicipio.SimMunicipioEstadoError" | translate }}</mat-error>
+                    </div>
+              </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-spinner *ngIf="_proc" [diameter]="30" class="mb-3 mx-auto"></mat-spinner>
+        <button mat-button
+            (click)="onSubmit(simMunicipioForm.value);"
+            [disabled]="!simMunicipioForm.valid">
+            {{ "simMunicipio._guardar" | translate  }}
+        </button>
+        <button mat-button
+            (click)="onDelete(simMunicipioForm.value);"
+            [disabled]="!simMunicipioForm.valid || originalSimMunicipio._estado !== 'O'">
+            {{ "simMunicipio._eliminar" | translate  }}
+        </button>
+        <button
+            mat-button
+            mat-dialog-close>
+            {{ "simMunicipio._cancelar" | translate  }}
+        </button>
+    </mat-card-actions>
+</mat-card>

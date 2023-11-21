@@ -1,0 +1,32 @@
+.mat-card {
+    font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+    padding-bottom: 0;
+    min-width: 430px;
+}
+
+.mc-title {
+    margin-bottom: 30px;
+}
+
+.form-control {
+    border: 1px solid #BABABA;
+    font-size: inherit !important;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: none !important;
+}
+
+.card-action {
+    margin-bottom: 5px !important;
+    padding-top: 20px;
+}
+
+.btn-login {
+    height: 32px !important;
+    width: 132px;
+}

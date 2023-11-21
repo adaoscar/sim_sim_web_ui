@@ -1,0 +1,14 @@
+<div class="close" *ngIf="!getEstilos().botones && !getEstilos().cancel">
+    <mat-icon style="cursor: pointer;" (click)="onSubmit(false)">clear</mat-icon>
+</div>
+<mat-card class="card">
+    <mat-card-content class="content" [ngStyle]="{'padding-bottom': getEstilos().padding}">
+        <mat-icon class="icono" [ngStyle]="{'color': getEstilos().color}">{{ getEstilos().icono }}</mat-icon>
+        <div class="titulo" [ngStyle]="{'color': getEstilos().color}">{{ titulo }}</div>
+        <div class="mensaje">{{ mensaje }}</div>
+    </mat-card-content>
+    <mat-card-actions class="actions" *ngIf="getEstilos().botones">
+        <button class="btn-middle boton" (click)="onSubmit(false);" *ngIf="getEstilos().cancel">{{ 'alertasBotones.cancelar' | translate }}</button>
+        <button mat-button class="boton" (click)="onSubmit(true);">{{ getBoton() | translate }}</button>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,60 @@
+<mat-card>
+    <mat-card-header>
+        <div class="d-flex align-items-center m-card">
+            <mat-card-title class="mb-0">{{ 'simTipoDelito._titulo' | translate }}</mat-card-title>
+            <span [ngStyle]="{'margin': 'auto'}" ></span>
+            <mat-icon *ngIf="simTipoDelitoForm.invalid" [matTooltip]="getErrorMessages()">error_outline</mat-icon>
+            <mat-icon mat-dialog-close>close</mat-icon>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="simTipoDelitoForm" (ngSubmit)="onSubmit(simTipoDelitoForm.value)" autocomplete="off">
+            <div class="dialog-content">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="number"
+                                    formControlName="SimTipoDelitoCodigo"
+                                    placeholder="{{ 'simTipoDelito.SimTipoDelitoCodigo' | translate }}+" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simTipoDelitoForm.controls.SimTipoDelitoCodigo.invalid && simTipoDelitoForm.controls.SimTipoDelitoCodigo.touched">{{ "simTipoDelito.SimTipoDelitoCodigoError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="text"
+                                    formControlName="SimTipoDelitoNombre"
+                                    placeholder="{{ 'simTipoDelito.SimTipoDelitoNombre' | translate }}:" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simTipoDelitoForm.controls.SimTipoDelitoNombre.invalid && simTipoDelitoForm.controls.SimTipoDelitoNombre.touched">{{ "simTipoDelito.SimTipoDelitoNombreError" | translate }}</mat-error>
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-checkbox
+                                formControlName="SimTipoDelitoEstado" >
+                                {{ 'simTipoDelito.SimTipoDelitoEstado' | translate }}:</mat-checkbox>
+                        <mat-error *ngIf="simTipoDelitoForm.controls.SimTipoDelitoEstado.invalid && simTipoDelitoForm.controls.SimTipoDelitoEstado.touched">{{ "simTipoDelito.SimTipoDelitoEstadoError" | translate }}</mat-error>
+                    </div>
+              </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-spinner *ngIf="_proc" [diameter]="30" class="mb-3 mx-auto"></mat-spinner>
+        <button mat-button
+            (click)="onSubmit(simTipoDelitoForm.value);"
+            [disabled]="!simTipoDelitoForm.valid">
+            {{ "simTipoDelito._guardar" | translate  }}
+        </button>
+        <button mat-button
+            (click)="onDelete(simTipoDelitoForm.value);"
+            [disabled]="!simTipoDelitoForm.valid || originalSimTipoDelito._estado !== 'O'">
+            {{ "simTipoDelito._eliminar" | translate  }}
+        </button>
+        <button
+            mat-button
+            mat-dialog-close>
+            {{ "simTipoDelito._cancelar" | translate  }}
+        </button>
+    </mat-card-actions>
+</mat-card>

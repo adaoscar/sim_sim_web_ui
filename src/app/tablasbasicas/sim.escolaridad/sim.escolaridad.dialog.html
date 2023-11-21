@@ -1,0 +1,62 @@
+<mat-card>
+    <mat-card-header>
+        <div class="d-flex align-items-center m-card">
+            <mat-card-title class="mb-0">{{ 'simEscolaridad._titulo' | translate }}</mat-card-title>
+            <span [ngStyle]="{'margin': 'auto'}" ></span>
+            <mat-icon *ngIf="simEscolaridadForm.invalid" [matTooltip]="getErrorMessages()">error_outline</mat-icon>
+            <mat-icon mat-dialog-close>close</mat-icon>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="simEscolaridadForm" (ngSubmit)="onSubmit(simEscolaridadForm.value)" autocomplete="off">
+            <div class="dialog-content">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="number"
+                                    formControlName="SimEscolaridadCodigo"
+                                    placeholder="{{ 'simEscolaridad.SimEscolaridadCodigo' | translate }}+" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simEscolaridadForm.controls.SimEscolaridadCodigo.invalid && simEscolaridadForm.controls.SimEscolaridadCodigo.touched">{{ "simEscolaridad.SimEscolaridadCodigoError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="text"
+                                    formControlName="SimEscolaridadNombre"
+                                    placeholder="{{ 'simEscolaridad.SimEscolaridadNombre' | translate }}:" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simEscolaridadForm.controls.SimEscolaridadNombre.invalid && simEscolaridadForm.controls.SimEscolaridadNombre.touched">{{ "simEscolaridad.SimEscolaridadNombreError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-checkbox
+                                formControlName="SimEscolaridadEstado" >
+                                {{ 'simEscolaridad.SimEscolaridadEstado' | translate }}:</mat-checkbox>
+                        <mat-error *ngIf="simEscolaridadForm.controls.SimEscolaridadEstado.invalid && simEscolaridadForm.controls.SimEscolaridadEstado.touched">{{ "simEscolaridad.SimEscolaridadEstadoError" | translate }}</mat-error>
+                    </div>
+              </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-spinner *ngIf="_proc" [diameter]="30" class="mb-3 mx-auto"></mat-spinner>
+        <button mat-button
+            (click)="onSubmit(simEscolaridadForm.value);"
+            [disabled]="!simEscolaridadForm.valid">
+            {{ "simEscolaridad._guardar" | translate  }}
+        </button>
+        <button mat-button *ngIf="originalSimEscolaridad._estado !== 'O'" 
+            (click)="onDelete(simEscolaridadForm.value);"
+            [disabled]="!simEscolaridadForm.valid || originalSimEscolaridad._estado !== 'O'">
+            {{ "simEscolaridad._eliminar" | translate  }}
+        </button>
+        <button
+            mat-button
+            mat-dialog-close>
+            {{ "simEscolaridad._cancelar" | translate  }}
+        </button>
+    </mat-card-actions>
+</mat-card>

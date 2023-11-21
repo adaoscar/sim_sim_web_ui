@@ -1,0 +1,206 @@
+<style>
+  .form-control:focus {
+    /*    outline: none !important;
+    border: 1px solid red;
+    box-shadow: 0 0 10px #719ECE;*/
+    color: #4B4B4B !important;
+  }
+
+</style>
+
+<div id="wrapper" class="main-wrapper">
+
+  <!-- Header -->
+  <div class="sticky-head-wrapper" style="height: 120px; box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.2) !important;">
+    <header id="head" class="navbar-default sticky-header header5">
+
+      <!-- Header Superior -->
+      <div class="header-top opened">
+        <div class="navbar-container container">
+          <div class="row">
+            <div class="col-sm-6 col-md-6">
+              <nav class="top-nav">
+                <a href="https://www.gov.co/" title="Estrategia Gov.co">
+                  <img src="/assets/images/logo-govco.png" alt="Logo Gov.co">
+                </a>
+              </nav>
+            </div>
+
+            <div class="col-sm-6 col-md-6">
+              <ul class="pull-right social-links text-center">
+                <li><a href="https://www.facebook.com/MinJusticiaCo/"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/MinjusticiaCo"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.youtube.com/user/prensaminjusticia"><i class="fa fa-youtube"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header Inferior -->
+      <div class="top-head">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-12 col-md-2"></div>
+
+            <div class="col-6 col-md-4" style="padding-top: 5px;">
+              <a (click)="onCancelar()" class="logo img-responsive alignleft" style="cursor: pointer;">
+                <img src="/assets/images/logo-sim.png" alt="Sistema de Información Misional - Ministerio de Justicia" style="max-width: 200px;">
+              </a>
+            </div>
+
+            <div class="col-6 col-md-4" style="padding-top: 7px;">
+              <a href="https://www.minjusticia.gov.co/" class="logo img-responsive alignright">
+                <img src="/assets/images/logo-minjusticia.jpg" alt="Ministerio de Justicia">
+              </a>
+            </div>
+
+            <div class="col-12 col-md-2"></div>
+
+          </div>
+        </div>
+      </div>
+
+    </header>
+  </div>
+
+  <!-- Barra de Botones Accesibilidad -->
+
+  <!-- Inicio Login -->
+  <section class="parallax parallax-sim-mj parallax-siceq d-flex align-items-center parall">
+    <div class="overlay"></div><!--Overlay agrega efecto oscuro sobre imagen de fondo-->
+    <div class="container">
+      <div class="row">
+        <!--Inicio Row Login -->
+        <div class="col-12 col-md-3">
+        </div>
+        <div class="col-12 col-md-6 login">
+          <div class="login-sim-mj">
+            <div class="logo-sistema">
+              <img [src]="getLogo().logo" [alt]="getLogo().alt" style="max-height: 80px !important; margin-top: 15px;">
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="login-sim-form">
+                <div class="login-content">
+                  <div *ngIf="noValido" class="text-danger">
+                    <div>Usuario o contraseña no corresponde</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Usuario<span>:</span></label>
+                    <input type="text" class="form-control" formControlName="usuario" placeholder="Digitar Usuario" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }" (keyup.enter)="onSubmit()">
+                    <div *ngIf="submitted && f.usuario.errors" class="invalid-feedback">
+                      <div *ngIf="f.usuario.errors.required">Usuario es requerido</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Contraseña<span>:</span></label>
+                    <input [type]="inputType" class="form-control" formControlName="contrasena" placeholder="Digitar Contraseña" [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }" (keyup.enter)="onSubmit()">
+                    <div *ngIf="submitted && f.contrasena.errors" class="invalid-feedback">
+                      <div *ngIf="f.contrasena.errors.required">Contraseña es requerida</div>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group clear">
+                    <input id="mostrarContrasena" formControlName="mostrarContrasena" class="custom_check" type="checkbox" (click)="onMostrarContrasena()">
+                    <label for="mostrarContrasena" class="custom_label">Mostrar Contraseña</label>
+                  </div> -->
+                  <!-- <div class="form-group clear">
+                    <input id="aceptoTerminos" formControlName="aceptoTerminos" class="custom_check" type="checkbox">
+                    <label for="aceptoTerminos" class="custom_label">Acepto Términos y Condiciones</label>
+                  </div> -->
+                  <p style="margin-top: 25px; margin-bottom: 25px;">
+                    <a href="#">Política de seguridad</a>
+                  </p>
+                  <div class="login-sim-mj-botones">
+                    <a href="javascript:void(0)" style="text-transform: capitalize;" (click)="onCancelar()" class="btn-medio-contenido mx-1">Cancelar</a>
+                    <a href="javascript:void(0)" style="text-transform: capitalize;" (click)="onSubmit()" class="btn-alto-contenido mx-1" [attr.disabled]="loginForm.invalid">Ingresar</a>
+                  </div>
+                  <div *ngIf="loading" class="d-flex justify-content-center row">
+                    <mat-spinner [diameter]="30"></mat-spinner>
+                    <span class="spinner">{{ 'Main._cargando' | translate }}</span>
+                  </div>
+                </div>
+                <div class="login-links-bottom">
+                  <!-- <a href="#">Cambiar contraseña</a> -->
+                  <div><a (click)="solicitudRecuperarClave()" style="cursor: pointer;">Olvidé mi contraseña</a></div>
+                  <div><span>Versión {{ version }}</span></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+        </div>
+        <!--Fin Row Login -->
+      </div>
+    </div>
+  </section>
+  <!-- Fin Login -->
+  <!-- Footer -->
+  <!-- Footer Widget -->
+  <section class="footer-widget">
+    <div class="container">
+      <div class="row with-border footer-mj">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-3 footer-col">
+          <div class="footer-item">
+            <div class="footer-logo">
+              <a href="https://www.gov.co/" title="Estrategia Gov.co" target="_blank" rel="nofollow"><img src="/assets/images/logo-govco.png" alt="Logo Gov.co"></a>
+            </div>
+            <div class="footer-logo">
+              <a href="https://www.colombia.co" title="Marca Colombia" target="_blank" rel="nofollow"><img src="/assets/images/logo-marca-colombia.png" alt="Logo Marca Colombia"></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-4 col-lg-6 footer-col">
+          <div class="footer-item contact-info">
+            <p>
+              <span class="tit-foot">Ministerio de Justicia y del Derecho</span><br>
+              Calle 53 No. 13 - 27 / Bogotá D.C, Colombia<br>
+              Código Postal 110231
+            </p>
+
+            <p>
+              <span class="tit-foot">Teléfono Conmutador:</span><br>
+              +57(1) 444 31 00<br>
+              Línea Gratuita: 01 8000 911170
+            </p>
+
+            <p>
+              <span class="tit-foot">Horario de Atención:</span><br>
+              Lunes a Viernes de 8:00 a.m. a 3:30 p.m. en jornada continua.<br>
+              Dirección de correspondencia:<br>
+              Carrera 13 No. 52 - 95 Bogotá<br>
+              <a href="https://www.minjusticia.gov.co/servicio-al-ciudadano/pqrds" >Peticiones, Quejas, Reclamos, Denuncias, Solicitudes</a><br>
+              <a href="https://www.minjusticia.gov.co/servicio-al-ciudadano/canales-de-atencion" >Canales de Atención</a><br>
+              <a href="https://www.minjusticia.gov.co/servicio-ciudadano/Paginas/politica-proteccion-datos-personales.aspx" >Política de privacidad y tratamiento de datos personales</a><br>
+            </p>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-4 col-lg-3 footer-col">
+          <div class="footer-item">
+            <p>
+              Correo para notificaciones judiciales:<br>
+              <span><a href="mailto:notificaciones.judiciales@minjusticia.gov.co">notificaciones.judiciales@minjusticia.gov.co</a></span><br>
+              <span><a href="https://www.minjusticia.gov.co/normatividad/procesos-judiciales">Informe Procesos Judiciales contra el MJD</a></span>
+            </p>
+
+            <p>
+              <span class="tit-foot">Funcionarios</span><br>
+              <span><a href="https://www.office.com/" title="Correo Institucional Minusticia">Correo Institucional</a></span><br>
+              <span><a href="https://epx.minjusticia.gov.co/" title="eProcess Extended">EPX</a></span><br>
+              <span><a href="https://intranet.minjusticia.gov.co/" title="Intranet Minjusticia">Intranet</a></span>
+            </p>
+
+            <p>
+              <span><a href="#" title="Mapa del Sitio Minjusticia">Mapa del sitio</a></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script language="javascript">
+  if (screen.width >= 1000) { document.write("<style>body{zoom:80%;}</style>"); }
+</script>

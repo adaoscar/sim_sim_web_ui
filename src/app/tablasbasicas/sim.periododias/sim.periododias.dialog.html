@@ -1,0 +1,60 @@
+<mat-card>
+    <mat-card-header>
+        <div class="d-flex align-items-center m-card">
+            <mat-card-title class="mb-0">{{ 'simPeriodoDias._titulo' | translate }}</mat-card-title>
+            <span [ngStyle]="{'margin': 'auto'}" ></span>
+            <mat-icon *ngIf="simPeriodoDiasForm.invalid" [matTooltip]="getErrorMessages()">error_outline</mat-icon>
+            <mat-icon mat-dialog-close>close</mat-icon>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="simPeriodoDiasForm" (ngSubmit)="onSubmit(simPeriodoDiasForm.value)" autocomplete="off">
+            <div class="dialog-content">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="number"
+                                    formControlName="SimPeriodoDiasCodigo"
+                                    placeholder="{{ 'simPeriodoDias.SimPeriodoDiasCodigo' | translate }}+" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simPeriodoDiasForm.controls.SimPeriodoDiasCodigo.invalid && simPeriodoDiasForm.controls.SimPeriodoDiasCodigo.touched">{{ "simPeriodoDias.SimPeriodoDiasCodigoError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="text"
+                                    formControlName="SimPeriodoDiasNombre"
+                                    placeholder="{{ 'simPeriodoDias.SimPeriodoDiasNombre' | translate }}:" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simPeriodoDiasForm.controls.SimPeriodoDiasNombre.invalid && simPeriodoDiasForm.controls.SimPeriodoDiasNombre.touched">{{ "simPeriodoDias.SimPeriodoDiasNombreError" | translate }}</mat-error>
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-checkbox
+                                formControlName="SimPeriodoDiasEstado" >
+                                {{ 'simPeriodoDias.SimPeriodoDiasEstado' | translate }}:</mat-checkbox>
+                        <mat-error *ngIf="simPeriodoDiasForm.controls.SimPeriodoDiasEstado.invalid && simPeriodoDiasForm.controls.SimPeriodoDiasEstado.touched">{{ "simPeriodoDias.SimPeriodoDiasEstadoError" | translate }}</mat-error>
+                    </div>
+              </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-spinner *ngIf="_proc" [diameter]="30" class="mb-3 mx-auto"></mat-spinner>
+        <button mat-button
+            (click)="onSubmit(simPeriodoDiasForm.value);"
+            [disabled]="!simPeriodoDiasForm.valid">
+            {{ "simPeriodoDias._guardar" | translate  }}
+        </button>
+        <button mat-button
+            (click)="onDelete(simPeriodoDiasForm.value);"
+            [disabled]="!simPeriodoDiasForm.valid || originalSimPeriodoDias._estado !== 'O'">
+            {{ "simPeriodoDias._eliminar" | translate  }}
+        </button>
+        <button
+            mat-button
+            mat-dialog-close>
+            {{ "simPeriodoDias._cancelar" | translate  }}
+        </button>
+    </mat-card-actions>
+</mat-card>

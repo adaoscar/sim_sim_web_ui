@@ -1,0 +1,62 @@
+<mat-card>
+    <mat-card-header>
+        <div class="d-flex align-items-center m-card">
+            <mat-card-title class="mb-0">{{ 'simDecisionTramite._titulo' | translate }}</mat-card-title>
+            <span [ngStyle]="{'margin': 'auto'}" ></span>
+            <mat-icon *ngIf="simDecisionTramiteForm.invalid" [matTooltip]="getErrorMessages()">error_outline</mat-icon>
+            <mat-icon mat-dialog-close>close</mat-icon>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="simDecisionTramiteForm" (ngSubmit)="onSubmit(simDecisionTramiteForm.value)" autocomplete="off">
+            <div class="dialog-content">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="number"
+                                    formControlName="SimDecisionTramiteCodigo"
+                                    placeholder="{{ 'simDecisionTramite.SimDecisionTramiteCodigo' | translate }}+" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simDecisionTramiteForm.controls.SimDecisionTramiteCodigo.invalid && simDecisionTramiteForm.controls.SimDecisionTramiteCodigo.touched">{{ "simDecisionTramite.SimDecisionTramiteCodigoError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="text"
+                                    formControlName="SimDecisionTramiteNombre"
+                                    placeholder="{{ 'simDecisionTramite.SimDecisionTramiteNombre' | translate }}:" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simDecisionTramiteForm.controls.SimDecisionTramiteNombre.invalid && simDecisionTramiteForm.controls.SimDecisionTramiteNombre.touched">{{ "simDecisionTramite.SimDecisionTramiteNombreError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-checkbox
+                                formControlName="SimDecisionTramiteEstado" >
+                                {{ 'simDecisionTramite.SimDecisionTramiteEstado' | translate }}:</mat-checkbox>
+                        <mat-error *ngIf="simDecisionTramiteForm.controls.SimDecisionTramiteEstado.invalid && simDecisionTramiteForm.controls.SimDecisionTramiteEstado.touched">{{ "simDecisionTramite.SimDecisionTramiteEstadoError" | translate }}</mat-error>
+                    </div>
+              </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-spinner *ngIf="_proc" [diameter]="30" class="mb-3 mx-auto"></mat-spinner>
+        <button mat-button
+            (click)="onSubmit(simDecisionTramiteForm.value);"
+            [disabled]="!simDecisionTramiteForm.valid">
+            {{ "simDecisionTramite._guardar" | translate  }}
+        </button>
+        <button mat-button *ngIf="originalSimDecisionTramite._estado !== 'O'" 
+            (click)="onDelete(simDecisionTramiteForm.value);"
+            [disabled]="!simDecisionTramiteForm.valid || originalSimDecisionTramite._estado !== 'O'">
+            {{ "simDecisionTramite._eliminar" | translate  }}
+        </button>
+        <button
+            mat-button
+            mat-dialog-close>
+            {{ "simDecisionTramite._cancelar" | translate  }}
+        </button>
+    </mat-card-actions>
+</mat-card>

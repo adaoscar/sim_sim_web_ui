@@ -1,0 +1,111 @@
+<mat-card>
+    <mat-card-header>
+        <div class="d-flex align-items-center m-card">
+            <mat-card-title class="mb-0">{{ 'simUsuario._titulo' | translate }}</mat-card-title>
+            <span [ngStyle]="{'margin': 'auto'}" ></span>
+            <mat-icon *ngIf="simUsuarioForm.invalid" [matTooltip]="getErrorMessages()">error_outline</mat-icon>
+            <mat-icon mat-dialog-close>close</mat-icon>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="simUsuarioForm" (ngSubmit)="onSubmit(simUsuarioForm.value)" autocomplete="off">
+            <div class="dialog-content">
+                <div class="row">
+                    <div class="col-sm-6 col-12">
+                        <mat-form-field>
+                            <input matInput class="nodis"
+                                    autocomplete="off"
+                                    [matAutocomplete]="simTipoDocumentoNombre"
+                                    [formControl]="simTipoDocumentoNombreCtrl"
+                                    placeholder="*{{ 'simUsuario.SimTipoDocumentoNombre' | translate }}:"
+                                    (keydown)="onKeydownSimTipoDocumentoNombre($event);" />
+                        </mat-form-field>
+                        <mat-autocomplete #simTipoDocumentoNombre="matAutocomplete">
+                            <mat-option *ngFor="let opt of filteredSimTipoDocumentoNombre"
+                                        [value]="opt.SimTipoDocumentoNombre"
+                                        (click)="onSelectSimTipoDocumentoNombre(opt);">
+                                {{ opt.SimTipoDocumentoNombre }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-error *ngIf="simTipoDocumentoNombreCtrl.invalid && simTipoDocumentoNombreCtrl.touched">{{ "SimUsuario.SimTipoDocumentoNombreError" | translate }}</mat-error>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <mat-form-field>
+                            <input matInput type="text" class="nodis"
+                                    formControlName="SimUsuarioDocumento"
+                                    placeholder="*{{ 'simUsuario.SimUsuarioDocumento' | translate }}:" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simUsuarioForm.controls.SimUsuarioDocumento.invalid && simUsuarioForm.controls.SimUsuarioDocumento.touched">{{ "simUsuario.SimUsuarioDocumentoError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-12">
+                        <mat-form-field>
+                            <input matInput type="text"
+                                    formControlName="SimUsuarioNombres"
+                                    placeholder="*{{ 'simUsuario.SimUsuarioNombres' | translate }}:" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simUsuarioForm.controls.SimUsuarioNombres.invalid && simUsuarioForm.controls.SimUsuarioNombres.touched">{{ "simUsuario.SimUsuarioNombresError" | translate }}</mat-error>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <mat-form-field>
+                            <input matInput type="text"
+                                    formControlName="SimUsuarioApellidos"
+                                    placeholder="*{{ 'simUsuario.SimUsuarioApellidos' | translate }}:" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simUsuarioForm.controls.SimUsuarioApellidos.invalid && simUsuarioForm.controls.SimUsuarioApellidos.touched">{{ "simUsuario.SimUsuarioApellidosError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-12">
+                        <mat-form-field>
+                            <input matInput type="text"
+                                    formControlName="SimUsuarioTelefono"
+                                    placeholder="*{{ 'simUsuario.SimUsuarioTelefono' | translate }}:" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simUsuarioForm.controls.SimUsuarioTelefono.invalid && simUsuarioForm.controls.SimUsuarioTelefono.touched">{{ "simUsuario.SimUsuarioTelefonoError" | translate }}</mat-error>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>{{ 'simUsuario.SimUsuarioEstado' | translate }}:</mat-label>
+                            <mat-select matInput type="text" formControlName="SimUsuarioEstado">
+                                <mat-option [value]="true">{{ 'Main._activo' | translate }}</mat-option>
+                                <mat-option [value]="false">{{ 'Main._inactivo' | translate }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-error *ngIf="simUsuarioForm.controls.SimUsuarioEstado.invalid && simUsuarioForm.controls.SimUsuarioEstado.touched">{{ "simUsuario.SimUsuarioEstadoError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-12">
+                        <mat-form-field>
+                            <input matInput type="text"
+                                    formControlName="SimUsuarioEmail"
+                                    placeholder="*{{ 'simUsuario.SimUsuarioEmail' | translate }}:" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simUsuarioForm.controls.SimUsuarioEmail.invalid && simUsuarioForm.controls.SimUsuarioEmail.touched">{{ "simUsuario.SimUsuarioEmailError" | translate }}</mat-error>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-spinner *ngIf="_proc" [diameter]="30" class="mb-3 mx-auto"></mat-spinner>
+        <button mat-button
+            (click)="onSubmit(simUsuarioForm.value);"
+            [disabled]="!simUsuarioForm.valid">
+            {{ "simUsuario._guardar" | translate  }}
+        </button>
+        <button mat-button *ngIf="originalSimUsuario._estado === 'O'"
+            (click)="onDelete(simUsuarioForm.value);"
+            [disabled]="!simUsuarioForm.valid">
+            {{ "simUsuario._eliminar" | translate  }}
+        </button>
+        <button
+            mat-button
+            mat-dialog-close>
+            {{ "simUsuario._cancelar" | translate  }}
+        </button>
+    </mat-card-actions>
+</mat-card>

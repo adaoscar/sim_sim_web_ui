@@ -1,0 +1,143 @@
+<!-- Navbar -->
+<navbar-component (volver)="onVolverMenu()"></navbar-component>
+
+<mat-sidenav-container autosize class="sidenav-content">
+
+  <!-- Menu -->
+  <mat-sidenav #sidenav mode="side" [(opened)]=opened class="sidenav">
+    
+    <!-- Opciones -->
+    <mat-nav-list class="menu_desplegable" id="style_menu_desplegable" style="width: inherit">
+
+      <!-- Modulos -->
+      <ng-template ngFor let-modulo [ngForOf]="modulos">
+        <mat-list-item (click)="onSelectModulo(modulo)" class="pl-2" [ngClass]="modulo.nombre == modNombre ? 'mat-item-sel' : 'mat-item-nosel'">
+          <span class="lt-concrete pr-2">{{ modulo.descripcion }}</span>
+          <mat-icon class="mat-icon-flecha" [ngClass]="modulo.id === modId && _flecha ? 'efecto-rotf' : 'efecto-rotb'">keyboard_arrow_down</mat-icon>
+        </mat-list-item>
+
+        <!-- Grupos -->
+        <mat-nav-list *ngIf="_grupo && modulo.nombre == modNombre">
+          <ng-template ngFor let-grupo [ngForOf]="grupos">
+            <mat-list-item (click)="onSelectFuncionalidad(modulo, grupo, '');" [ngClass]="grupo.nombre == funcNombre ? 'mat-item-sel' : 'mat-item-nosel'" style="padding-left: 25px; padding-right: 20px;">{{ grupo.descripcion }}</mat-list-item>
+            
+            <!-- Funcionalidades -->
+            <mat-nav-list *ngIf="_funcionalidad && grupo.nombre == grupoNombre">
+              <ng-template ngFor let-funcionalidad [ngForOf]="funcionalidades">
+                <mat-list-item (click)="onSelectFuncionalidad(modulo, grupo, funcionalidad);" [ngClass]="funcionalidad.nombre == funcNombre ? 'mat-item-sel' : 'mat-item-nosel'" style="padding-left: 40px; padding-right: 20px;">{{ funcionalidad.descripcion }}</mat-list-item>
+              </ng-template>
+            </mat-nav-list>
+
+          </ng-template>
+        </mat-nav-list>
+      </ng-template>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <!-- Contenido -->
+  <mat-sidenav-content>
+    
+    <!-- Navbar -->
+    <mat-toolbar class="sticky-top" style="z-index: 10000; min-height: 46px !important;">
+      <mat-toolbar-row class="bg-color-gold wh">
+        
+        <mat-icon (click)="onCambiarIconoMenu()" class="mr-1 wh" style="cursor: pointer;">{{ tipoLogoMenu }}</mat-icon>
+        <span *ngIf="!isMenu" (click)="onVolverMenu()" class="text-sc">{{ grupoDescripcion }} ></span>
+        <h3 *ngIf="!isMenu" (click)="onVolverMenu()" class="text-pr">{{ funcDescripcion }}</h3>
+
+        <span class="space"></span>
+        <mat-icon (click)="onBusqueda()" class="wh">search</mat-icon>
+        <mat-divider [vertical]="true" class="divider"></mat-divider>
+        <button mat-button style="padding: 0 !important;" [matMenuTriggerFor]="menuUser">
+          <span class="mx-2">{{ usuario.given_name }}</span>
+          <span *ngIf="rolUsuario !== ''">({{ rolUsuario }})</span>
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        
+        <!-- Menu Usuario -->
+        <mat-menu #menuUser="matMenu">
+          <button mat-menu-item (click)="onCambiarClave()">
+            <mat-icon>person_outline</mat-icon>
+            <span>{{ 'home._cambiarClave' | translate }}</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="onCerrarSesion();">
+            <mat-icon>power_settings_new</mat-icon>
+            <span>{{ 'home._cerrarSesion' | translate }}</span>
+          </button>
+        </mat-menu>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <!-- Main -->
+    <div class="d-flex align-items-center main" *ngIf="isMenu">
+      <div style="width: 100%;">
+        <div class="titulo text-center">Sistema de Información Misional</div>
+
+        <mat-icon class="icono" (click)="onVolverVista()" *ngIf="!_vistaGeneral">home</mat-icon>
+        
+        <!-- Modulos -->
+        <div class="row main-module" *ngIf="_vistaGeneral">
+          <div class="col-12 col-sm-4 p-0" *ngFor="let modulo of modulos">
+            <div class="module row" (click)="onSelectModuloVista(modulo)">
+
+              <div class="d-flex align-items-end col-8">
+                <div style="margin-bottom: 15px;">
+                  <div class="module-tlp">{{ modulo.descripcion }}</div>
+                  <div class="module-tls">Funcionalidades: {{ modulo.funcionalidades.length }}</div>
+                </div>
+              </div>
+              <div class="col-4" style="margin-top: 15px;">
+                <div class="d-flex justify-content-center module-div">
+                  <mat-icon class="module-icon">{{ getIcon(modulo.nombre) }}</mat-icon>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Funcionalidades -->
+        <div class="row main-module" style="width: 90%;" *ngIf="!_vistaGeneral">
+          
+          <!-- Modulo -->
+          <div class="col-12 col-sm-4 p-0">
+            <div class="module row" (click)="onVolverVista()">
+              <div class="d-flex align-items-end col-8">
+                <div style="margin-bottom: 15px;">
+                  <div class="module-tlp">{{ moduloVista.descripcion }}</div>
+                  <div class="module-tls">Funcionalidades: {{ moduloVista.funcionalidades.length }}</div>
+                  <div class="module-tls" style="font-size: 14px;">(Volver)</div>
+                </div>
+              </div>
+              <div class="col-4" style="margin-top: 15px;">
+                <div class="d-flex justify-content-center module-div">
+                  <mat-icon class="module-icon">{{ getIcon(moduloVista.nombre) }}</mat-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Funcionalidades -->
+          <div class="col-12 col-sm-8 p-0">
+            <div class="funcionalidad">
+              <div class="row funcionalidad-row m-0">
+                <div class="d-flex align-items-center col-12 col-sm-6 opc" *ngFor="let item of grupos" (click)="onSelectFuncionalidad(moduloVista, item, null)">- {{ item.descripcion }}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Router -->
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- Footer -->
+<footer-component></footer-component>

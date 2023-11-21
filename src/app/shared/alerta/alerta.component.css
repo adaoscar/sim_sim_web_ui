@@ -1,0 +1,49 @@
+.card {
+    min-width: 35vw !important;
+    border: none !important;
+}
+
+.content {
+    padding: 7% 7%;
+    text-align: center!important;
+    position: relative;
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+}
+
+.close {
+    position: relative;
+    z-index: 1040;
+    text-align: end;
+}
+
+.icono {
+    font-size: 4em;
+    line-height: 1.5;
+    margin-left: -32px;
+}
+
+.titulo {
+    font-family: Montserrat,sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.5!important;
+    margin-bottom: .5rem;
+}
+
+.mensaje {
+    font-family: "Work Sans",sans-serif;
+    font-size: 1rem;
+    color: #4b4b4b;
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.actions {
+    margin-bottom: 1.1rem !important;
+}
+
+.boton {
+    width: 160px;
+}

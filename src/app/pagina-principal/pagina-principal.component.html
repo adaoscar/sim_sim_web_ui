@@ -1,0 +1,174 @@
+<style>
+  .border {
+    border: 1px solid white !important;
+  }
+</style>
+
+<div id="wrapper" class="main-wrapper">
+
+  <!-- Header -->
+  <div class="sticky-head-wrapper" style="height: 120px; box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.2) !important;">
+    <header id="head" class="navbar-default sticky-header header5">
+
+      <!-- Header Superior -->
+      <div class="header-top opened">
+        <div class="navbar-container container">
+          <div class="row">
+            <div class="col-sm-6 col-md-6">
+              <nav class="top-nav">
+                <a href="https://www.gov.co/" title="Estrategia Gov.co">
+                  <img src="/assets/images/logo-govco.png" alt="Logo Gov.co">
+                </a>
+              </nav>
+            </div>
+
+            <div class="col-sm-6 col-md-6">
+              <ul class="pull-right social-links text-center">
+                <li><a href="https://www.facebook.com/MinJusticiaCo/"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/MinjusticiaCo"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.youtube.com/user/prensaminjusticia"><i class="fa fa-youtube"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header Inferior -->
+      <div class="top-head">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-12 col-md-2"></div>
+
+            <div class="col-6 col-md-4" style="padding-top: 5px;">
+              <a href="index.html" class="logo img-responsive alignleft">
+                <img src="/assets/images/logo-sim.png" alt="Sistema de Información Misional - Ministerio de Justicia" style="width: 190px; margin-top: 5px;">
+              </a>
+            </div>
+
+            <div class="col-6 col-md-4" style="padding-top: 7px;">
+              <a href="https://www.minjusticia.gov.co/" class="logo img-responsive alignright">
+                <img src="/assets/images/logo-minjusticia.jpg" alt="Ministerio de Justicia">
+              </a>
+            </div>
+
+            <div class="col-12 col-md-2"></div>
+
+          </div>
+        </div>
+      </div>
+
+    </header>
+  </div>
+
+  <section class="d-flex align-items-center parall">
+    <div class="container">
+
+      <div class="d-flex flex-wrap">
+        <div class="aligncenter">
+          <h2>¿Qué es el Sistema de Información Misional?</h2>
+        </div>
+        <div class="widget-padding" style="text-align: center;">
+          <p>
+          El Sistema de Información Misional, del Ministerio de Justicia y del Derecho (SIM), permite la estandarización de las plataformas e integración de los sistemas de información (SICAAC, SICEQ, SICJ, GCODI), facilitando la gestión de la información, el correcto almacenamiento y administración de los datos, logrando una interoperabilidad eficaz y eficiente, acorde con la transformación digital de la entidad.
+         </p><br>
+          <p>
+          El sistema ofrece, además, el registro y administración de las funcionalidades y módulos de las áreas de Asuntos internacionales, (Repatriaciones, Asistencia Judicial y Extradiciones) y Política Criminal y Penitenciaria (Política Criminal, Política Penitenciaria y Política de Jóvenes y adolescentes).
+          </p>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center flex-wrap tp">
+        <div class="logo-subsistema-sim" (click)="loginAplicativo('SICEQ')">
+          <a title="SICEQ - Sistema de Información de la Conciliación en Equidad"><img src="/assets/images/logos-sistemas/logo-siceq-minjusticia-inicio.png" alt="SICEQ - Sistema de Información de la Conciliación en Equidad" class="img-responsive"></a>
+        </div>
+        <div class="logo-subsistema-sim" (click)="loginAplicativo('CDJ')">
+          <a title="Casas de Justicia"><img src="/assets/images/logos-sistemas/logo-casas-de-justicia-minjusticia-inicio.png" alt="Casas de Justicia" class="img-responsive"></a>
+        </div>
+        <div class="logo-subsistema-sim" (click)="loginAplicativo('SICAAC')">
+          <a title="SICAAC - Sistema de Información de la Conciliación, el Arbitraje y la Amigable Conciliación"><img src="/assets/images/logos-sistemas/logo-sicaac-minjustica-inicio.png" alt="SICAAC - Sistema de Información de la Conciliación, el Arbitraje y la Amigable Conciliación" class="img-responsive"></a>
+        </div>
+        <div class="logo-subsistema-sim" (click)="loginAplicativo('GCDI')">
+          <a title="Control Disciplinario"><img src="/assets/images/logos-sistemas/logo-control-disciplinario-inicio.png" alt="Control Disciplinario" class="img-responsive"></a>
+        </div>
+        <div class="logo-subsistema-sim" (click)="loginAplicativo('PCR')">
+          <a title="Política Criminal"><img src="/assets/images/logos-sistemas/logo-politica-criminal-minjusticia-inicio.png" alt="Política Criminal" class="img-responsive"></a>
+        </div>
+        <div class="logo-subsistema-sim" (click)="loginAplicativo('DAI')">
+          <a title="Asuntos Internacionales"><img src="/assets/images/logos-sistemas/logo-asuntos-internacionales-minjusticia-inicio.png" alt="Asuntos Internacionales" class="img-responsive"></a>
+        </div>
+        <div class="logo-subsistema-sim" (click)="loginAplicativo('SIM')">
+          <a title="Sistema Misional"><img src="/assets/images/logo-sim.png" alt="Asuntos Disciplinarios" class="img-responsive"></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- Fin Subsistemas SIM -->
+  <!-- Footer -->
+  <!-- Footer Widget -->
+  <section class="footer-widget">
+    <div class="container">
+      <div class="row with-border footer-mj">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 footer-col">
+          <div class="footer-item">
+            <div class="footer-logo">
+              <a href="https://www.gov.co/" title="Estrategia Gov.co" target="_blank" rel="nofollow"><img src="/assets/images/logo-govco.png" alt="Logo Gov.co"></a>
+            </div>
+            <div class="footer-logo">
+              <a href="https://www.colombia.co" title="Marca Colombia" target="_blank" rel="nofollow"><img src="/assets/images/logo-marca-colombia.png" alt="Logo Marca Colombia"></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-6 footer-col">
+          <div class="footer-item contact-info">
+            <p>
+              <span class="tit-foot">Ministerio de Justicia y del Derecho</span><br>
+              Calle 53 No. 13 - 27 / Bogotá D.C, Colombia<br>
+              Código Postal 110231
+            </p>
+
+            <p>
+              <span class="tit-foot">Teléfono Conmutador:</span><br>
+              +57(00) 444 31 00<br>
+              Línea Gratuita: 01 8000 911170
+            </p>
+
+            <p>
+              <span class="tit-foot">Horario de Atención:</span><br>
+              Lunes a Viernes de 8:00 a.m. a 3:30 p.m. en jornada continua.<br>
+              Dirección de correspondencia:<br>
+              Carrera 13 No. 52 - 95 Bogotá<br>
+              <a href="https://www.minjusticia.gov.co/servicio-al-ciudadano/pqrds" >Peticiones, Quejas, Reclamos, Denuncias, Solicitudes</a><br>
+              <a href="https://www.minjusticia.gov.co/servicio-al-ciudadano/canales-de-atencion" >Canales de Atención</a><br>
+              <a href="https://www.minjusticia.gov.co/servicio-ciudadano/Paginas/politica-proteccion-datos-personales.aspx" >Política de privacidad y tratamiento de datos personales</a><br>
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 footer-col">
+          <div class="footer-item">
+            <p>
+              Correo para notificaciones judiciales:<br>
+              <span><a href="mailto:notificaciones.judiciales@minjusticia.gov.co">notificaciones.judiciales@minjusticia.gov.co</a></span><br>
+              <span><a href="https://www.minjusticia.gov.co/normatividad/procesos-judiciales">Informe Procesos Judiciales contra el MJD</a></span>
+            </p>
+
+            <p>
+              <span class="tit-foot">Funcionarios</span><br>
+              <span><a href="https://www.office.com/" title="Correo Institucional Minusticia">Correo Institucional</a></span><br>
+              <span><a href="https://epx.minjusticia.gov.co/" title="eProcess Extended">EPX</a></span><br>
+              <span><a href="https://intranet.minjusticia.gov.co/" title="Intranet Minjusticia">Intranet</a></span>
+            </p>
+
+            <p>
+              <span><a href="#" title="Mapa del Sitio Minjusticia">Mapa del sitio</a></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Fin Footer Widget -->
+  <!-- Fin Footer-->
+
+</div>

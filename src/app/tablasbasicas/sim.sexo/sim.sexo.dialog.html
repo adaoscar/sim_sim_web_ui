@@ -1,0 +1,60 @@
+<mat-card>
+    <mat-card-header>
+        <div class="d-flex align-items-center m-card">
+            <mat-card-title class="mb-0">{{ 'simSexo._titulo' | translate }}</mat-card-title>
+            <span [ngStyle]="{'margin': 'auto'}" ></span>
+            <mat-icon *ngIf="simSexoForm.invalid" [matTooltip]="getErrorMessages()">error_outline</mat-icon>
+            <mat-icon mat-dialog-close>close</mat-icon>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="simSexoForm" (ngSubmit)="onSubmit(simSexoForm.value)" autocomplete="off">
+            <div class="dialog-content">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="number"
+                                    formControlName="SimSexoCodigo"
+                                    placeholder="{{ 'simSexo.SimSexoCodigo' | translate }}+" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simSexoForm.controls.SimSexoCodigo.invalid && simSexoForm.controls.SimSexoCodigo.touched">{{ "simSexo.SimSexoCodigoError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="text"
+                                    formControlName="SimSexoNombre"
+                                    placeholder="{{ 'simSexo.SimSexoNombre' | translate }}:" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simSexoForm.controls.SimSexoNombre.invalid && simSexoForm.controls.SimSexoNombre.touched">{{ "simSexo.SimSexoNombreError" | translate }}</mat-error>
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-checkbox
+                                formControlName="SimSexoEstado" >
+                                {{ 'simSexo.SimSexoEstado' | translate }}:</mat-checkbox>
+                        <mat-error *ngIf="simSexoForm.controls.SimSexoEstado.invalid && simSexoForm.controls.SimSexoEstado.touched">{{ "simSexo.SimSexoEstadoError" | translate }}</mat-error>
+                    </div>
+              </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-spinner *ngIf="_proc" [diameter]="30" class="mb-3 mx-auto"></mat-spinner>
+        <button mat-button
+            (click)="onSubmit(simSexoForm.value);"
+            [disabled]="!simSexoForm.valid">
+            {{ "simSexo._guardar" | translate  }}
+        </button>
+        <button mat-button
+            (click)="onDelete(simSexoForm.value);"
+            [disabled]="!simSexoForm.valid || originalSimSexo._estado !== 'O'">
+            {{ "simSexo._eliminar" | translate  }}
+        </button>
+        <button
+            mat-button
+            mat-dialog-close>
+            {{ "simSexo._cancelar" | translate  }}
+        </button>
+    </mat-card-actions>
+</mat-card>

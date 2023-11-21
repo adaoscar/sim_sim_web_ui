@@ -1,0 +1,286 @@
+<!-- Filtros -->
+<div style="padding: 15px; padding-bottom: 0;">
+    <form [formGroup]="simAuditoriaForm" autocomplete="off">
+        <div class="row">
+            <div class="col-sm-3 col-12">
+                <mat-form-field>
+                    <input matInput
+                            autocomplete="off"
+                            [matAutocomplete]="simAuditoriaAplicacion"
+                            [formControl]="simAuditoriaAplicacionCtrl"
+                            placeholder="{{ 'simConsultarAuditoria.SimConsultarAuditoriaAplicacion' | translate }}:"
+                            (keydown)="onKeydownSimAuditoriaAplicacion($event);" />
+                </mat-form-field>
+                <mat-autocomplete #simAuditoriaAplicacion="matAutocomplete">
+                    <mat-option *ngFor="let opt of filteredSimAuditoriaAplicacion" [value]="opt.SimConsultarAuditoriaAplicacion" (click)="onSelectSimAuditoriaAplicacion(opt);">
+                        {{ opt.SimConsultarAuditoriaAplicacion }}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="col-sm-3 col-12" *ngIf="!vistaEliminar">
+                <mat-form-field>
+                    <input matInput
+                            autocomplete="off"
+                            [matAutocomplete]="simAuditoriaModulo"
+                            [formControl]="simAuditoriaModuloCtrl"
+                            placeholder="{{ 'simConsultarAuditoria.SimConsultarAuditoriaModulo' | translate }}:"
+                            (keydown)="onKeydownSimAuditoriaModulo($event);" />
+                </mat-form-field>
+                <mat-autocomplete #simAuditoriaModulo="matAutocomplete">
+                    <mat-option *ngFor="let opt of filteredSimAuditoriaModulo" [value]="opt.SimConsultarAuditoriaModulo" (click)="onSelectSimAuditoriaModulo(opt);">
+                        {{ opt.SimConsultarAuditoriaModulo }}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="col-sm-3 col-12" *ngIf="!vistaEliminar">
+                <mat-form-field>
+                    <input matInput
+                            autocomplete="off"
+                            [matAutocomplete]="simAuditoriaFuncionalidad"
+                            [formControl]="simAuditoriaFuncionalidadCtrl"
+                            placeholder="{{ 'simConsultarAuditoria.SimConsultarAuditoriaFuncionalidad' | translate }}:"
+                            (keydown)="onKeydownSimAuditoriaFuncionalidad($event);" />
+                </mat-form-field>
+                <mat-autocomplete #simAuditoriaFuncionalidad="matAutocomplete">
+                    <mat-option *ngFor="let opt of filteredSimAuditoriaFuncionalidad" [value]="opt.SimConsultarAuditoriaFuncionalidad" (click)="onSelectSimAuditoriaFuncionalidad(opt);">
+                        {{ opt.SimConsultarAuditoriaFuncionalidad }}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="col-sm-3 col-12" *ngIf="!vistaEliminar"></div>
+            <div class="col-sm-3 col-12 row" style="margin-right: 15px;">
+                <div class="col-6 pr-0">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="datepickerSimConsultarAuditoriaFechaIngresoInicial"
+                                formControlName="SimConsultarAuditoriaFechaIngresoInicialFe" class="nodis"
+                                placeholder="{{ 'simConsultarAuditoria.SimConsultarAuditoriaFechaIngresoInicial' | translate }}:" />
+                        <mat-datepicker-toggle matSuffix [for]="datepickerSimConsultarAuditoriaFechaIngresoInicial"></mat-datepicker-toggle>
+                        <mat-datepicker #datepickerSimConsultarAuditoriaFechaIngresoInicial></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field>
+                        <input matInput type="time" displayFormat="hh:mm" formControlName="SimConsultarAuditoriaFechaIngresoInicialHr" class="nodis"/>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-3 col-12 row">
+                <div class="col-6 pr-0">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="datepickerSimConsultarAuditoriaFechaIngresoFinal"
+                                formControlName="SimConsultarAuditoriaFechaIngresoFinalFe" class="nodis"
+                                placeholder="{{ 'simConsultarAuditoria.SimConsultarAuditoriaFechaIngresoFinal' | translate }}:" />
+                        <mat-datepicker-toggle matSuffix [for]="datepickerSimConsultarAuditoriaFechaIngresoFinal"></mat-datepicker-toggle>
+                        <mat-datepicker #datepickerSimConsultarAuditoriaFechaIngresoFinal></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field>
+                        <input matInput type="time" displayFormat="hh:mm" formControlName="SimConsultarAuditoriaFechaIngresoFinalHr" class="nodis"/>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-3 col-12 d-flex justify-content-end" *ngIf="vistaEliminar">
+                <button mat-button class="mat-raised-button" style="width: 120px; height: 35px !important;" (click)="onFiltro();" [disabled]="!simAuditoriaForm.valid || _errorFecha">
+                    {{ "simConsultarAuditoria._buscar" | translate  }}
+                </button>
+                <button mat-button class="mat-raised-button" style="width: 120px; height: 35px !important;" (click)="onEliminar();" [disabled]="!_eliminar" *ngIf="vistaEliminar">
+                    {{ "simConsultarAuditoria._eliminar" | translate  }}
+                </button>
+            </div>
+            <div class="col-sm-6 col-12 d-flex justify-content-end" *ngIf="!vistaEliminar">
+                <button mat-button class="mat-raised-button" style="width: 120px; height: 35px !important;" (click)="onFiltro();" [disabled]="!simAuditoriaForm.valid || _errorFecha">
+                    {{ "simConsultarAuditoria._buscar" | translate  }}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Tabla -->
+<div class="mat-table-scroll" id="style_menu_desplegable">
+    <mat-table [dataSource]="rows" class="mat-elevation-z8" matSort [ngStyle]="{'width': 'auto'}">
+        <!-- Usuario: Column -->
+        <ng-container matColumnDef="Usuario/Apellidos">
+            <mat-header-cell *matHeaderCellDef disableClear>
+                <button mat-icon-button [matMenuTriggerFor]="menuSearch" (click)="onSelectColumn($event, 'SimConsultarAuditoriaUsuario', 'Varchar', 'Usuario/Apellidos', ':')">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <span mat-sort-header>{{ "simConsultarAuditoria.SimConsultarAuditoriaUsuario" | translate }}:</span>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.Usuario?.Apellidos}} {{row.Usuario?.Nombres}}</mat-cell>
+        </ng-container>
+
+        <!-- Rol: Column -->
+        <ng-container matColumnDef="simConsultarAuditoriaRol">
+            <mat-header-cell *matHeaderCellDef disableClear>
+                <button mat-icon-button [matMenuTriggerFor]="menuSearch" (click)="onSelectColumn($event, 'SimConsultarAuditoriaRol', 'Varchar', 'simConsultarAuditoriaRol', ':')">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <span mat-sort-header>{{ "simConsultarAuditoria.SimConsultarAuditoriaRol" | translate }}:</span>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.display]="'block'">{{row.SimConsultarAuditoriaRol}}</mat-cell>
+        </ng-container>
+
+        <!-- Fecha Ingreso: Column -->
+        <ng-container matColumnDef="simConsultarAuditoriaFechaIngreso">
+            <mat-header-cell *matHeaderCellDef disableClear>
+                <button mat-icon-button>
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <span mat-sort-header>{{ "simConsultarAuditoria.SimConsultarAuditoriaFechaIngreso" | translate }}:</span>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.SimConsultarAuditoriaFechaIngreso | date:'dd/MM/yyyy, h:mm a'}} </mat-cell>
+        </ng-container>
+
+        <!-- Aplicacion: Column -->
+        <ng-container matColumnDef="simConsultarAuditoriaAplicacion">
+            <mat-header-cell *matHeaderCellDef disableClear>
+                <button mat-icon-button>
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <span mat-sort-header>{{ "simConsultarAuditoria.SimConsultarAuditoriaAplicacion" | translate }}:</span>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.SimConsultarAuditoriaAplicacion}}</mat-cell>
+        </ng-container>
+
+        <!-- Modulo: Column -->
+        <ng-container matColumnDef="simConsultarAuditoriaModulo">
+            <mat-header-cell *matHeaderCellDef disableClear>
+                <button mat-icon-button [matMenuTriggerFor]="menuSearch" (click)="onSelectColumn($event, 'SimConsultarAuditoriaModulo', 'Varchar', 'simConsultarAuditoriaModulo', ':')">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <span mat-sort-header>{{ "simConsultarAuditoria.SimConsultarAuditoriaModulo" | translate }}:</span>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.SimConsultarAuditoriaModulo}}</mat-cell>
+        </ng-container>
+
+        <!-- Funcionalidad: Column -->
+        <ng-container matColumnDef="simConsultarAuditoriaFuncionalidad">
+            <mat-header-cell *matHeaderCellDef disableClear>
+                <button mat-icon-button [matMenuTriggerFor]="menuSearch" (click)="onSelectColumn($event, 'SimConsultarAuditoriaFuncionalidad', 'Varchar', 'simConsultarAuditoriaFuncionalidad', ':')">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <span mat-sort-header>{{ "simConsultarAuditoria.SimConsultarAuditoriaFuncionalidad" | translate }}:</span>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.SimConsultarAuditoriaFuncionalidad}}</mat-cell>
+        </ng-container>
+
+        <!-- Accion: Column -->
+        <ng-container matColumnDef="simConsultarAuditoriaAccion">
+            <mat-header-cell *matHeaderCellDef disableClear>
+                <button mat-icon-button [matMenuTriggerFor]="menuSearch" (click)="onSelectColumn($event, 'SimConsultarAuditoriaAccion', 'Varchar', 'simConsultarAuditoriaAccion', ':')">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <span mat-sort-header>{{ "simConsultarAuditoria.SimConsultarAuditoriaAccion" | translate }}:</span>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.SimConsultarAuditoriaAccion}}</mat-cell>
+        </ng-container>
+
+        <!-- Registro Actual: Column -->
+        <ng-container matColumnDef="simConsultarAuditoriaRegistroActual">
+            <mat-header-cell *matHeaderCellDef disableClear>
+                <button mat-icon-button [matMenuTriggerFor]="menuSearch" (click)="onSelectColumn($event, 'SimConsultarAuditoriaRegistroActual', 'Varchar', 'simConsultarAuditoriaRegistroActual', ':')">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <span mat-sort-header>{{ "simConsultarAuditoria.SimConsultarAuditoriaRegistroActual" | translate }}:</span>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.display]="'block'">
+                <span>{{ row.SimConsultarAuditoriaRegistroActual | slice:0:80 }}</span>
+	            <span *ngIf="row.SimConsultarAuditoriaRegistroActual.length > 80">...</span>
+            </mat-cell>
+        </ng-container>
+
+        <!-- Registro Modificado: Column -->
+        <ng-container matColumnDef="simConsultarAuditoriaRegistroModificado">
+            <mat-header-cell *matHeaderCellDef disableClear>
+                <button mat-icon-button [matMenuTriggerFor]="menuSearch" (click)="onSelectColumn($event, 'SimConsultarAuditoriaRegistroModificado', 'Varchar', 'simConsultarAuditoriaRegistroModificado', ':')">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <span mat-sort-header>{{ "simConsultarAuditoria.SimConsultarAuditoriaRegistroModificado" | translate }}:</span>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.display]="'block'">
+                <span>{{ row.SimConsultarAuditoriaRegistroModificado | slice:0:80 }}</span>
+	            <span *ngIf="row.SimConsultarAuditoriaRegistroModificado.length > 80">...</span>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns" class="sticky"></mat-header-row>
+        <mat-row *matRowDef="let row; let even = even; let index = index; columns: displayedColumns;"
+            [ngClass]="{'alternate-row-color': even, 'mat-row-select': row === selectedRow}"
+            (click)="onSelect($event, row, index);">
+        </mat-row>
+
+        <mat-menu #menuSearch>
+            <div mat-menu-item mat-filter-item [disableRipple]="true" class="menu-title">
+                {{  "simConsultarAuditoria." + selectedColumn.name | translate }}
+            </div>
+            <div mat-menu-item mat-filter-item [disableRipple]="true">
+                <mat-form-field (click)="$event.stopPropagation()">
+                <mat-select [panelClass]="'mat-elevation-z10'" placeholder="{{ 'CONDITIONS_LIST.conditions' | translate }}" [(value)]="searchCondition[selectedColumn.name]">
+                    <mat-option *ngFor="let condition of selectedColumn.filter" [value]="condition">{{condition.label}}</mat-option>
+                </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div mat-menu-item mat-filter-item [disableRipple]="true" [ngSwitch]="selectedColumn.type">
+                <mat-form-field (click)="$event.stopPropagation()" *ngSwitchCase="'Date'">
+                    <!--Date-->
+                    <input matInput 
+                        [matDatepicker]="menuSearchDate" 
+                        displayFormat="MMM DD/YYYY"
+                        placeholder="{{ 'CONDITIONS_LIST.value' | translate }}"
+                        [(ngModel)]="searchValue[selectedColumn.name]">
+                    <mat-datepicker-toggle matSuffix [for]="menuSearchDate"></mat-datepicker-toggle>
+                    <mat-datepicker #menuSearchDate></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field (click)="$event.stopPropagation()" *ngSwitchCase="'Boolean'">
+                    <!--Boolean-->
+                    <mat-select matInput type="text" [(value)]="searchValue[selectedColumn.name]"  placeholder="{{ 'CONDITIONS_LIST.value' | translate }}" >
+                        <mat-option [value]="true">{{ 'Main._activo' | translate }}</mat-option>
+                        <mat-option [value]="false">{{ 'Main._inactivo' | translate }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field (click)="$event.stopPropagation()" *ngSwitchDefault>
+                    <!--Number, Varchar-->
+                    <input matInput  *ngSwitchDefault
+                        placeholder="{{ 'CONDITIONS_LIST.value' | translate }}" 
+                        [(ngModel)]="searchValue[selectedColumn.name]">
+                </mat-form-field>
+            </div>
+
+            <div mat-menu-item mat-filter-item [disableRipple]="true">
+                <button mat-raised-button (click)="onClearColumn($event)">{{ 'CONDITIONS_LIST.clear' | translate }}</button>
+                <button mat-raised-button color="primary" (click)="onApplyFilter($event)">{{ 'CONDITIONS_LIST.search' | translate }}</button>
+            </div>
+        </mat-menu>
+
+    </mat-table>
+</div>
+<mat-toolbar class="mat-toolbar-opc">
+    <mat-toolbar-row>
+        <mat-icon (click)="onRefresh()" title="{{ 'Main._refreshTable' | translate }}">refresh</mat-icon>
+        <mat-icon (click)="onExportExcel()" title="{{ 'Main._exportCSV' | translate }}">save_alt</mat-icon>
+        <span class="example-spacer"></span>
+        <mat-paginator #paginator
+                class="paginator"
+                [length]="resultsLength"
+                [pageSize]="_pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>
+        <div class="mat-paginator" *ngIf="paginator.length > paginator.pageSize">
+            <mat-label>{{ 'PAGINATOR.pageLabel' | translate }} </mat-label>
+            <mat-slider
+                min="0"
+                [max]="(paginator.length / paginator.pageSize).toFixed()"
+                [displayWith]="formatPageLabel"
+                step="1"
+                [(ngModel)]="pageIndex"
+                thumbLabel></mat-slider>
+        </div>
+        <div *ngIf="isLoadingResults" class="ml-2 row">
+            <mat-spinner [diameter]="30"></mat-spinner>
+            <span class="ml-2" style="font-size: 12px">Loading...</span>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

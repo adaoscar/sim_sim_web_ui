@@ -1,0 +1,62 @@
+<mat-card>
+    <mat-card-header>
+        <div class="d-flex align-items-center m-card">
+            <mat-card-title class="mb-0">{{ 'simCondicionesVunerabilidad._titulo' | translate }}</mat-card-title>
+            <span [ngStyle]="{'margin': 'auto'}" ></span>
+            <mat-icon *ngIf="simCondicionesVunerabilidadForm.invalid" [matTooltip]="getErrorMessages()">error_outline</mat-icon>
+            <mat-icon mat-dialog-close>close</mat-icon>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="simCondicionesVunerabilidadForm" (ngSubmit)="onSubmit(simCondicionesVunerabilidadForm.value)" autocomplete="off">
+            <div class="dialog-content">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="number"
+                                    formControlName="SimCondicionesVunerabilidadCodigo"
+                                    placeholder="{{ 'simCondicionesVunerabilidad.SimCondicionesVunerabilidadCodigo' | translate }}+" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simCondicionesVunerabilidadForm.controls.SimCondicionesVunerabilidadCodigo.invalid && simCondicionesVunerabilidadForm.controls.SimCondicionesVunerabilidadCodigo.touched">{{ "simCondicionesVunerabilidad.SimCondicionesVunerabilidadCodigoError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-form-field>
+                            <input matInput type="text"
+                                    formControlName="SimCondicionesVunerabilidadNombre"
+                                    placeholder="{{ 'simCondicionesVunerabilidad.SimCondicionesVunerabilidadNombre' | translate }}:" />
+                        </mat-form-field>
+                        <mat-error *ngIf="simCondicionesVunerabilidadForm.controls.SimCondicionesVunerabilidadNombre.invalid && simCondicionesVunerabilidadForm.controls.SimCondicionesVunerabilidadNombre.touched">{{ "simCondicionesVunerabilidad.SimCondicionesVunerabilidadNombreError" | translate }}</mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <mat-checkbox
+                                formControlName="SimCondicionesVunerabilidadEstado" >
+                                {{ 'simCondicionesVunerabilidad.SimCondicionesVunerabilidadEstado' | translate }}:</mat-checkbox>
+                        <mat-error *ngIf="simCondicionesVunerabilidadForm.controls.SimCondicionesVunerabilidadEstado.invalid && simCondicionesVunerabilidadForm.controls.SimCondicionesVunerabilidadEstado.touched">{{ "simCondicionesVunerabilidad.SimCondicionesVunerabilidadEstadoError" | translate }}</mat-error>
+                    </div>
+              </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-spinner *ngIf="_proc" [diameter]="30" class="mb-3 mx-auto"></mat-spinner>
+        <button mat-button
+            (click)="onSubmit(simCondicionesVunerabilidadForm.value);"
+            [disabled]="!simCondicionesVunerabilidadForm.valid">
+            {{ "simCondicionesVunerabilidad._guardar" | translate  }}
+        </button>
+        <button mat-button *ngIf="originalSimCondicionesVunerabilidad._estado !== 'O'" 
+            (click)="onDelete(simCondicionesVunerabilidadForm.value);"
+            [disabled]="!simCondicionesVunerabilidadForm.valid || originalSimCondicionesVunerabilidad._estado !== 'O'">
+            {{ "simCondicionesVunerabilidad._eliminar" | translate  }}
+        </button>
+        <button
+            mat-button
+            mat-dialog-close>
+            {{ "simCondicionesVunerabilidad._cancelar" | translate  }}
+        </button>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,21 @@
+.parall {
+    height: calc(75vh - 125px);
+}
+
+.tp {
+    margin-top: 4vh;
+}
+
+.logo-subsistema-sim {
+    cursor: pointer;
+}
+
+@media (max-height: 700px) {
+    .parall {
+        height: auto !important;
+    }
+
+    .tp {
+        margin-top: auto;
+    }
+}
