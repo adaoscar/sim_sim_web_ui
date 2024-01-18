@@ -11,11 +11,18 @@ export class SimConsultarAuditoriaModel {
     public SimConsultarAuditoriaAccion: string;
     public SimConsultarAuditoriaRegistroActual: string;
     public SimConsultarAuditoriaRegistroModificado: string;
+    public SimConsultarAuditoriaUsuarioIP: string;
+    public SimConsultarAuditoriaRegistrodeIngresoExitoso: boolean;
+    public SimConsultarAuditoriaRegistrodeIngresoFallido: boolean;
+    public SimConsultarAuditoriaIngresoExitosoFuncionalidad: string;
+    public SimConsultarAuditoriaIngresofallidaFuncionalidad: string;
     public SimUsuario: SimUsuarioModel;
     public _secuencia: number;
     public _estado: string = 'N';
     public _id: string;
     public _v: number;
+   
+   
 
     constructor(json: any = null) {
         if (json !== null) {
@@ -29,7 +36,12 @@ export class SimConsultarAuditoriaModel {
             this.SimConsultarAuditoriaFuncionalidad = json.SimConsultarAuditoriaFuncionalidad;
             this.SimConsultarAuditoriaAccion = json.SimConsultarAuditoriaAccion;
             this.SimConsultarAuditoriaRegistroActual = json.SimConsultarAuditoriaRegistroActual;
-            this.SimConsultarAuditoriaRegistroModificado = json.SimConsultarAuditoriaRegistroModificado;
+            this.SimConsultarAuditoriaUsuarioIP= json.SimConsultarAuditoriaUsuarioIP;
+            this.SimConsultarAuditoriaRegistrodeIngresoExitoso = json.SimConsultarAuditoriaRegistrodeIngresoExitoso;
+            this.SimConsultarAuditoriaRegistrodeIngresoFallido= json.SimConsultarAuditoriaRegistrodeIngresoFallido;
+            this.SimConsultarAuditoriaIngresoExitosoFuncionalidad = json.SimConsultarAuditoriaIngresoExitosoFuncionalidad;
+            this.SimConsultarAuditoriaIngresofallidaFuncionalidad = json.SimConsultarAuditoriaIngresofallidaFuncionalidad;
+            
         }
     }
 
@@ -58,8 +70,13 @@ export class SimConsultarAuditoriaModel {
               SimConsultarAuditoriaFuncionalidad: dato.SimConsultarAuditoriaFuncionalidad,
               SimConsultarAuditoriaAccion: dato.SimConsultarAuditoriaAccion,
               SimConsultarAuditoriaRegistroActual: dato.SimConsultarAuditoriaRegistroActual,
-              SimConsultarAuditoriaRegistroModificado: dato.SimConsultarAuditoriaRegistroModificado
-
+              SimConsultarAuditoriaRegistroModificado: dato.SimConsultarAuditoriaRegistroModificado,
+              SimConsultarAuditoriaUsuarioIP: dato.SimConsultarAuditoriaUsuarioIP,
+              SimConsultarAuditoriaRegistrodeIngresoExitoso: dato.SimConsultarAuditoriaRegistrodeIngresoExitoso,
+              SimConsultarAuditoriaRegistrodeIngresoFallido: dato.SimConsultarAuditoriaRegistrodeIngresoFallido,
+              SimConsultarAuditoriaIngresoExitosoFuncionalidad: dato.SimConsultarAuditoriaIngresoExitosoFuncionalidad,
+              SimConsultarAuditoriaIngresofallidaFuncionalidad: dato.SimConsultarAuditoriaIngresofallidaFuncionalidad,
+        
             };
             dataExcel.push(registro);
        });
@@ -79,6 +96,11 @@ export class SimConsultarAuditoriaModel {
         result += `${separator}${this.SimConsultarAuditoriaAccion}`;
         result += `${separator}${this.SimConsultarAuditoriaRegistroActual}`;
         result += `${separator}${this.SimConsultarAuditoriaRegistroModificado}`;
+        result += `${separator}${this.SimConsultarAuditoriaUsuarioIP}`;
+        result += `${separator}${this.SimConsultarAuditoriaRegistrodeIngresoExitoso}`;
+        result += `${separator}${this.SimConsultarAuditoriaRegistrodeIngresoFallido}`;
+        result += `${separator}${this.SimConsultarAuditoriaIngresoExitosoFuncionalidad}`;
+        result += `${separator}${this.SimConsultarAuditoriaIngresofallidaFuncionalidad}`;
 
         return result.substring(separator.length);
     }
@@ -96,7 +118,11 @@ export class SimConsultarAuditoriaModel {
         this.SimConsultarAuditoriaAccion = result[7];
         this.SimConsultarAuditoriaRegistroActual = result[8];
         this.SimConsultarAuditoriaRegistroModificado = result[9];
-
+        this.SimConsultarAuditoriaUsuarioIP= (result[10]);
+        this.SimConsultarAuditoriaRegistrodeIngresoExitoso= Boolean(result[11]);
+        this.SimConsultarAuditoriaRegistrodeIngresoFallido= Boolean(result[12]);
+        this.SimConsultarAuditoriaIngresoExitosoFuncionalidad = result[13];
+        this.SimConsultarAuditoriaIngresofallidaFuncionalidad= result[14];
         return this;
     }
 

@@ -14,6 +14,9 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { AlertaComponent } from 'src/app/shared/alerta/alerta.component';
 import { Router } from '@angular/router';
 
+
+
+
 declare var conditionsLists: any;
 
 @Component({
@@ -29,7 +32,7 @@ export class SimConsultarAuditoriaTable {
     selectedIndex: number = 0;
     originalRow: SimConsultarAuditoriaModel;
 
-    public displayedColumns: string[] = ['Usuario/Apellidos', 'simConsultarAuditoriaRol', 'simConsultarAuditoriaFechaIngreso', 'simConsultarAuditoriaAplicacion', 'simConsultarAuditoriaModulo', 'simConsultarAuditoriaFuncionalidad', 'simConsultarAuditoriaAccion', 'simConsultarAuditoriaRegistroActual', 'simConsultarAuditoriaRegistroModificado'];
+    public displayedColumns: string[] = ['Usuario/Apellidos', 'simConsultarAuditoriaRol', 'simConsultarAuditoriaFechaIngreso', 'simConsultarAuditoriaAplicacion', 'simConsultarAuditoriaModulo', 'simConsultarAuditoriaFuncionalidad', 'simConsultarAuditoriaAccion', 'simConsultarAuditoriaRegistroActual', 'simConsultarAuditoriaRegistroModificado','simConsultarAuditoriaUsuarioIP','simConsultarAuditoriaRegistrodeIngresoExitoso','simConsultarAuditoriaRegistrodeIngresoFallido','simConsultarAuditoriaIngresoExitosoFuncionalidad','simConsultarAuditoriaIngresofallidaFuncionalidad'];
 
     public conditionsList = conditionsLists.Varchar;
     public searchValue: any = {};

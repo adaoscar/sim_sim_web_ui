@@ -276,6 +276,28 @@
 		"SimConsultarAuditoriaRegistroActualError": "Registro Actual inválido",
 		"SimConsultarAuditoriaRegistroModificado": "Registro Modificado",
 		"SimConsultarAuditoriaRegistroModificadoError": "Registro Modificado inválido",
+		"SimConsultarAuditoriaUsuarioIP": "Usuario IP",
+		"SimConsultarAuditoriaUsuarioIPError": " Usuario IP inválido",
+		"SimConsultarAuditoriaRegistrodeIngresoExitoso": "Registro Ingreso Exitoso ",
+		"SimConsultarAuditoriaRegistrodeIngresoExitosoError": "Registro Ingreso Exitoso inválido",
+		"SimConsultarAuditoriaRegistrodeIngresoFallido": "Registro de Ingreso Fallido",
+		"SimConsultarAuditoriaRegistrodeIngresoFallidoError": "Registro de Ingreso Fallido inválido",
+		"SimConsultarAuditoriaIngresoExitosoFuncionalidad": "Ingreso Exitoso Funcionalidad",
+		"SimConsultarAuditoriaIngresoExitosoFuncionalidadError": "Ingreso Exitoso Funcionalidad inválido",
+		"SimConsultarAuditoriaIngresofallidaFuncionalidad": "Ingreso fallida Funcionalidad",
+		"SimConsultarAuditoriaIngresofallidaFuncionalidadError": "Ingreso fallida Funcionalidad inválido",
+
+
+
+
+
+
+		
+
+
+
+
+
 		"_guardar": "Salvar y Seguir",
 		"_buscar": "Buscar",
 		"_eliminar": "Eliminar",

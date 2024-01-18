@@ -27,7 +27,14 @@ describe('SimConsultarAuditoriaService', () => {
         SimConsultarAuditoriaFuncionalidad: `Crear solicitud`,
         SimConsultarAuditoriaAccion: `Ediar`,
         SimConsultarAuditoriaRegistroActual: `Ediar`,
-        SimConsultarAuditoriaRegistroModificado: `Ediar............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................. `,
+        SimConsultarAuditoriaRegistroModificado: `Ediar `,
+        SimUsuarioIP: `10.255.255.255`,
+        SimRegistrodeIngresoExitoso: `1`,
+        SimRegistrodeIngresoFallido: `0`,
+        SimIngresoExitosoFuncionalidad: `1`,
+        SimIngresofallidaFuncionalidad: `Error 404 `,
+
+
         _estado: ''
     };
 
@@ -52,6 +59,11 @@ describe('SimConsultarAuditoriaService', () => {
 			    expect(value.SimConsultarAuditoriaAccion).toBe(row.SimConsultarAuditoriaAccion);
 			    expect(value.SimConsultarAuditoriaRegistroActual).toBe(row.SimConsultarAuditoriaRegistroActual);
 			    expect(value.SimConsultarAuditoriaRegistroModificado).toBe(row.SimConsultarAuditoriaRegistroModificado);
+                expect(value.SimConsultarAuditoriaUsuarioIP).toBe(row.SimConsultarAuditoriaUsuarioIP);
+                expect(value.SimConsultarAuditoriaRegistrodeIngresoExitoso).toBe(row.SimConsultarAuditoriaRegistrodeIngresoExitoso);
+                expect(value.SimConsultarAuditoriaRegistrodeIngresoFallidos).toBe(row.SimConsultarAuditoriaRegistrodeIngresoFallido);
+                expect(value.SimConsultarAuditoriaIngresoExitosoFuncionalidad).toBe(row.SimConsultarAuditoriaIngresoExitosoFuncionalidad);
+                expect(value.SimConsultarAuditoriaIngresofallidaFuncionalidad).toBe(row.SimConsultarAuditoriaIngresofallidaFuncionalidad);
           done();
         });
     });
@@ -131,6 +143,11 @@ describe('SimConsultarAuditoriaService', () => {
 			    expect(value.SimConsultarAuditoriaAccion).toBe(row.SimConsultarAuditoriaAccion);
 			    expect(value.SimConsultarAuditoriaRegistroActual).toBe(row.SimConsultarAuditoriaRegistroActual);
 			    expect(value.SimConsultarAuditoriaRegistroModificado).toBe(row.SimConsultarAuditoriaRegistroModificado);
+                expect(value.SimUsuarioip).toBe(row.SimConsultarAuditoriaUsuarioIP);
+                expect(value.SimRegistrosdeintentosdeaccesoalsistemaexitosos).toBe(row.SimConsultarAuditoriaRegistrodeIngresoExitoso);
+                expect(value.SimRegistrosdeintentosdeaccesoalsistemaRechazados).toBe(row.SimConsultarAuditoriaRegistrodeIngresoFallido);
+                expect(value.SimRegistrosdedatosexitosos).toBe(row.SimConsultarAuditoriaIngresoExitosoFuncionalidad);
+                expect(value.SimRegistrosdedatosRechazados).toBe(row.SimConsultarAuditoriaIngresofallidaFuncionalidad);
             done();
         });
     });
@@ -153,6 +170,12 @@ describe('SimConsultarAuditoriaService', () => {
 			    expect(value.SimConsultarAuditoriaAccion).toBe(row.SimConsultarAuditoriaAccion);
 			    expect(value.SimConsultarAuditoriaRegistroActual).toBe(row.SimConsultarAuditoriaRegistroActual);
 			    expect(value.SimConsultarAuditoriaRegistroModificado).toBe(row.SimConsultarAuditoriaRegistroModificado);
+
+                expect(value.SimConsultarAuditoriaUsuarioIP).toBe(row.SimConsultarAuditoriaUsuarioIP);
+                expect(value.SimConsultarAuditoriaRegistrodeIngresoExitoso).toBe(row.SimConsultarAuditoriaRegistrodeIngresoExitoso);
+                expect(value.SimRegistrosdeintentosdeaccesoalsistemaRechazados).toBe(row.SimConsultarAuditoriaRegistrodeIngresoFallido);
+                expect(value.SimRegistrosdedatosexitosos).toBe(row.SimConsultarAuditoriaIngresoExitosoFuncionalidad);
+                expect(value.SimRegistrosdedatosRechazados).toBe(row.SimConsultarAuditoriaIngresofallidaFuncionalidad);
             done();
         });
     });

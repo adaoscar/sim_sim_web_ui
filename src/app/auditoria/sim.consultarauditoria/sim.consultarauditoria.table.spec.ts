@@ -27,7 +27,12 @@ describe('SimConsultarAuditoria_Table', () => {
         SimConsultarAuditoriaFuncionalidad: `Crear solicitud`,
         SimConsultarAuditoriaAccion: `Ediar`,
         SimConsultarAuditoriaRegistroActual: `Ediar`,
-        SimConsultarAuditoriaRegistroModificado: `Ediar............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................. `,
+        SimConsultarAuditoriaRegistroModificado: `Ediar `,
+        SimSimUsuarioIP: `Ediar `,
+        SimRegistrodeIngresoExitoso: `Ediar `,
+        SimRegistrodeIngresoFallido: `Ediar `,
+        SimIngresoExitosoFuncionalidad: `Ediar `,
+        SimIngresofallidaFuncionalidad: `Ediar `,
         _estado: ''
     };
 

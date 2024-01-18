@@ -8,9 +8,14 @@ import { MatSort } from '@angular/material/sort';
 
 import { environment } from 'src/environments/environment';
 
+
+
 @Injectable({ providedIn: 'root' })
 export class SimConsultarAuditoriaService {
+
     private simConsultarAuditoriaUrl = '';  // URL to web api
+
+    
 
     constructor(private http: HttpClient) {
         this.simConsultarAuditoriaUrl = `${environment.dataServiceUrl}/odata/SimConsultarAuditoria`;

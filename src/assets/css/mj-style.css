@@ -28488,3 +28488,16 @@ a.icon-link-tipo-2 {
   opacity: 0.5;
   background-color: #000;
 }
+
+
+/*scroll Personalizado*/
+
+.scroll-container {
+  overflow-x: auto; /* Habilita el scroll horizontal */
+  white-space: nowrap; /* Evita el salto de línea del contenido */
+  width: 100%; /* O ajusta según tus necesidades */
+}
+
+.scroll-content {
+  width: 200%; /* Ajusta según tus necesidades, debe ser mayor que el contenedor */
+}
